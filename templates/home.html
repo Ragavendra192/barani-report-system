@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row g-4">
+  <div class="col-12 col-lg-4">
+    <div class="app-card p-4 h-100">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h5 class="mb-0"><i class="bi bi-clock-history me-2 text-primary"></i>Shift Report</h5>
+        <span class="badge-soft">Time based</span>
+      </div>
+      <p class="text-secondary mb-3">
+        Analyze machine production by date range and shift (1 / 2 / 3). Export filtered
+        data directly to Excel for further analysis.
+      </p>
+      <a href="/shift-report" class="btn btn-primary btn-sm">
+        Open Shift Report <i class="bi bi-arrow-right-short ms-1"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-4">
+    <div class="app-card p-4 h-100">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h5 class="mb-0"><i class="bi bi-person-badge me-2 text-warning"></i>Operator Report</h5>
+        <span class="badge-soft">Performance</span>
+      </div>
+      <p class="text-secondary mb-3">
+        Filter logs by operator name with date range. Quickly understand individual operator
+        productivity & energy usage.
+      </p>
+      <a href="/operator-report" class="btn btn-warning btn-sm text-dark fw-semibold">
+        Open Operator Report <i class="bi bi-arrow-right-short ms-1"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-4">
+    <div class="app-card p-4 h-100">
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h5 class="mb-0"><i class="bi bi-lightning-charge me-2 text-info"></i>Energy Snapshot</h5>
+        <span class="badge-soft">Coming soon</span>
+      </div>
+      <p class="text-secondary mb-3">
+        Future section for visualizing ACKKW, ACKKWH, TOTKW and TOTKWH as charts and KPIs.
+      </p>
+      <button class="btn btn-outline-secondary btn-sm" disabled>
+        Under development
+      </button>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

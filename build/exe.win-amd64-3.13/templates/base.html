@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Barani Report System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet">
+
+    <style>
+      body {
+        background: #0f172a; /* slate-900 */
+        color: #e5e7eb;
+      }
+      .app-header {
+        background: radial-gradient(circle at top left, #1d4ed8, #020617);
+        color: #e5e7eb;
+        padding: 1.2rem 0;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+        margin-bottom: 1.5rem;
+      }
+      .app-card {
+        border-radius: 1rem;
+        border: 1px solid rgba(148,163,184,0.3);
+        background: rgba(15,23,42,0.96);
+        box-shadow: 0 18px 45px rgba(0,0,0,0.7);
+      }
+      .app-card-light {
+        border-radius: 1rem;
+        border: 1px solid rgba(148,163,184,0.3);
+        background: rgba(15,23,42,0.9);
+      }
+      .table thead th {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        background: #020617 !important;
+        color: #e5e7eb;
+      }
+      .table tbody tr:nth-child(even) {
+        background-color: rgba(15,23,42,0.65);
+      }
+      .table tbody tr:nth-child(odd) {
+        background-color: rgba(15,23,42,0.3);
+      }
+      .badge-soft {
+        background: rgba(148,163,184,0.18);
+        border-radius: 999px;
+        padding: 0.3rem 0.75rem;
+        font-size: 0.8rem;
+        color: #e5e7eb;
+      }
+      .nav-btn {
+        border-radius: 999px;
+        padding-inline: 1rem;
+        font-weight: 500;
+      }
+      a.nav-btn.active {
+        background-color: #e5e7eb !important;
+        color: #0f172a !important;
+      }
+    </style>
+</head>
+
+<body>
+
+<!-- Header / Navbar -->
+<header class="app-header">
+  <div class="container d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3">
+    
+    <!-- Logo + Text -->
+    <div class="d-flex align-items-center gap-3">
+      <div class="bg-light rounded-circle d-flex align-items-center justify-content-center"
+           style="width: 48px; height: 48px;">
+        <i class="bi bi-speedometer2 text-primary fs-4"></i>
+      </div>
+
+      <div>
+        <h3 class="mb-0 fw-semibold">Barani Hydraulics – Report System</h3>
+        <small class="text-light opacity-75">Machine analytics • Operator performance • Energy usage</small>
+      </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <nav class="d-flex gap-2">
+      <a href="/" 
+         class="btn btn-outline-light nav-btn {% if request.path == '/' %}active{% endif %}">
+        <i class="bi bi-house-door me-1"></i> Home
+      </a>
+
+      <a href="/shift-report" 
+         class="btn btn-outline-light nav-btn {% if '/shift-report' in request.path %}active{% endif %}">
+        <i class="bi bi-clock-history me-1"></i> Shift
+      </a>
+
+      <a href="/operator-report" 
+         class="btn btn-outline-light nav-btn {% if '/operator-report' in request.path %}active{% endif %}">
+        <i class="bi bi-person-badge me-1"></i> Operator
+      </a>
+
+      <a href="/product-report" 
+         class="btn btn-outline-light nav-btn {% if '/product-report' in request.path %}active{% endif %}">
+        <i class="bi bi-box-seam me-1"></i> Product
+      </a>
+    </nav>
+
+  </div>
+</header>
+
+<!-- Main content -->
+<main class="container mb-5">
+  {% block content %}
+  {% endblock %}
+</main>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

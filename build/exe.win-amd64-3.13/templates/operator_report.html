@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row g-4">
+  <!-- Filter card -->
+  <div class="col-12">
+    <div class="app-card p-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+          <h5 class="mb-0"><i class="bi bi-person-badge me-2 text-warning"></i>Operator Report</h5>
+          <small class="text-secondary">Filter logs by operator and date range, export to Excel.</small>
+        </div>
+        {% if rows %}
+          <span class="badge-soft">
+            <i class="bi bi-person-lines-fill me-1"></i> {{ rows|length }} rows
+          </span>
+        {% endif %}
+      </div>
+
+      <form method="POST" class="row g-3 align-items-end">
+        <div class="col-12 col-md-3">
+          <label class="form-label small text-uppercase text-secondary">From Date</label>
+          <input type="date" name="from_date" class="form-control form-control-sm"
+                 value="{{ from_date }}">
+        </div>
+
+        <div class="col-12 col-md-3">
+          <label class="form-label small text-uppercase text-secondary">To Date</label>
+          <input type="date" name="to_date" class="form-control form-control-sm"
+                 value="{{ to_date }}">
+        </div>
+
+        <div class="col-12 col-md-3">
+          <label class="form-label small text-uppercase text-secondary">Operator</label>
+          <select name="operator" class="form-select form-select-sm">
+            <option value="">Select Operator</option>
+            {% for op in operators %}
+              <option value="{{ op }}" {% if selected_operator == op %}selected{% endif %}>
+                {{ op }}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="col-12 col-md-3 d-flex gap-2">
+          <button type="submit" name="action" value="search"
+                  class="btn btn-primary btn-sm flex-fill">
+            <i class="bi bi-search me-1"></i> Search
+          </button>
+          <button type="submit" name="action" value="excel"
+                  class="btn btn-success btn-sm flex-fill">
+            <i class="bi bi-file-earmark-excel me-1"></i> Excel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Table card -->
+  <div class="col-12">
+    <div class="app-card-light p-3">
+      {% if rows %}
+        <div class="table-responsive" style="max-height: 70vh;">
+          <table class="table table-sm table-hover align-middle text-nowrap mb-0">
+            <thead>
+              <tr>
+                {% for col in columns %}
+                  <th class="small text-uppercase">{{ col }}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              {% for r in rows %}
+                <tr>
+                  {% for col in columns %}
+                    <td class="small">{{ r[col] }}</td>
+                  {% endfor %}
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% elif searched %}
+        <p class="text-secondary mb-0">No records found for selected operator/date range.</p>
+      {% else %}
+        <p class="text-secondary mb-0">Choose an operator and date range, then click <b>Search</b>.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
